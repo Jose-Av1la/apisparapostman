@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PadreFamiliaCreateDlg" widgetVar="PadreFamiliaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePadreFamiliaTitle}">
+            <h:form id="PadreFamiliaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{padreFamiliaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{padreFamiliaController.selected.cedula}" title="#{bundle.CreatePadreFamiliaTitle_cedula}" required="true" requiredMessage="#{bundle.CreatePadreFamiliaRequiredMessage_cedula}"/>
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{padreFamiliaController.selected.nombre}" title="#{bundle.CreatePadreFamiliaTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_apellido}" for="apellido" />
+                        <p:inputText id="apellido" value="#{padreFamiliaController.selected.apellido}" title="#{bundle.CreatePadreFamiliaTitle_apellido}" />
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{padreFamiliaController.selected.direccion}" title="#{bundle.CreatePadreFamiliaTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{padreFamiliaController.selected.telefono}" title="#{bundle.CreatePadreFamiliaTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreatePadreFamiliaLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{padreFamiliaController.selected.correo}" title="#{bundle.CreatePadreFamiliaTitle_correo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{padreFamiliaController.create}" value="#{bundle.Save}" update="display,:PadreFamiliaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PadreFamiliaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PadreFamiliaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
